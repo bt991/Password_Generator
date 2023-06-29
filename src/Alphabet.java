@@ -14,7 +14,7 @@ public class Alphabet {
         if (symbolsIncluded) pool.append(symbols);
     }
 
-    public String Alphabet(){
+    public String getAlphabet(){
         return pool.toString();
     }
 }

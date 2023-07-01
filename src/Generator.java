@@ -53,26 +53,6 @@ public class Generator {
             }
         }
     }
-
-    private void ratePasswordStrength() {
-        String test;
-
-        System.out.print("\nEnter your password: ");
-        test = input.next();
-
-        final Password password = new Password(test);
-        System.out.println(password.determineRating());
-    }
-
-    private void passwordTips() {
-        System.out.println("Use a minimum password length of 8." +
-                "\nUse as many categories (uppercase, lowercase, numbers, symbols) as possibly allowed." +
-                "\nAvoid using the same password twice." +
-                "\nAvoid using any form of pattern or character repetition which may be easily identifiable." +
-                "\nAvoid using passwords which may consist of birthdays or personal information which may be sensitive." +
-                "\nWhere applicable, make sure to use randomly generated passwords for increased security.");
-    }
-
     private void requestPassword() {
         boolean includeUpperCase = false;
         boolean includeLowerCase = false;
@@ -133,9 +113,25 @@ public class Generator {
         final Generator generator = new Generator(includeUpperCase,includeLowerCase,includeNumbers,includeSymbols);
         final Password password = generator.generatePassword(length);
 
-        System.err.println("Your generated password is: " + password);
+        System.out.println("Your generated password is: " + password);
     }
+    private void ratePasswordStrength() {
+        String test;
 
+        System.out.print("\nEnter your password: ");
+        test = input.next();
+
+        final Password password = new Password(test);
+        System.out.println(password.determineRating());
+    }
+    private void passwordTips() {
+        System.out.println("Use a minimum password length of 8." +
+                "\nUse as many categories (uppercase, lowercase, numbers, symbols) as possibly allowed." +
+                "\nAvoid using the same password twice." +
+                "\nAvoid using any form of pattern or character repetition which may be easily identifiable." +
+                "\nAvoid using passwords which may consist of birthdays or personal information which may be sensitive." +
+                "\nWhere applicable, make sure to use randomly generated passwords for increased security.");
+    }
     private Password generatePassword(int length) {
         final StringBuilder password = new StringBuilder();
         final int alphabetLength = alphabet.getAlphabet().length();
@@ -151,21 +147,17 @@ public class Generator {
 
         return new Password(password.toString());
     }
-
     private void passwordRequestError(String create) {
         if (!create.equalsIgnoreCase("yes") && !create.equalsIgnoreCase("no")){
             System.out.println("Not a valid answer, please try again.");
         }
     }
-
     private void printQuitMessage() {
         System.out.println("Ending program.");
     }
-
     private boolean isIncluded(String input){
         return input.equalsIgnoreCase("yes");
     }
-
     private void printMenu(){
         System.out.println("\n" +
                 "Enter 1 - Password Generator\n" +
